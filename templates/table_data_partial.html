@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/table_data_partial.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>Document</title>
+</head>
+<body><!-- Thêm div ẩn để chứa dữ liệu `columns` -->
+
+    <div class="table-container">
+        <h2>Bảng: {{ table_name }}</h2>
+        <h2>Database: {{ database_name }}</h2>
+        <script>
+            var tableName = "{{ table_name }}";  // Dùng Jinja2 để chèn giá trị table_name vào JavaScript
+            var databaseName = "{{ database_name }}";
+        </script>
+        <!-- Hộp nhập liệu -->
+        <div id="input_field">
+            <h2>Input Field</h2>
+            <form id="input_form">
+                {% for column in columns %}
+                    <div class="input-group">
+                        <label for="{{ column }}">{{ column }}:</label>
+                        <input type="text" id="{{ column }}" name="{{ column }}" placeholder="Enter {{ column }}" />
+                    </div>
+                {% endfor %}
+                <!-- Các nút Thêm, Cập nhật, Tải lại, Xóa -->
+                <button type="button" onclick="addRow()">Thêm</button>
+                <button type="button" onclick="updateRow()">Cập nhật</button>
+                <button type="button" onclick="reLoadTable()">Tải lại</button>
+                <button type="button" class="danger" onclick="deleteRow()">Xóa</button>
+
+                
+               
+            </form>
+        </div>
+        <table border="1" id="dataTable">
+            <thead>
+                <tr>
+                    {% for column in columns %}
+                    <th>{{ column }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in data %}
+                <tr>
+                    {% for cell in row %}
+                    <td>{{ cell }}</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <input type="button" id="tst" value="OK" onclick="fnselect()" />
+    </div>
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+        crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='scripts/dashboard.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/table_data_partial.js') }}"></script>
+</body>
+</html>

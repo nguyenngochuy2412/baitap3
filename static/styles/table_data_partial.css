@@ -1,0 +1,41 @@
+/* CSS cho bảng */
+table {
+    width: 100%;
+    border-collapse: collapse; /* Đảm bảo không có khoảng cách giữa các ô */
+}
+
+th, td {
+    border: 1px solid #ddd; /* Đường viền cho các ô */
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2; /* Màu nền cho tiêu đề cột */
+}
+
+#input_field {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+}
+
+.input-group {
+    margin-bottom: 10px;
+}
+
+.input-group label {
+    display: inline-block;
+    width: 120px;
+    font-weight: bold;
+}
+
+.input-group input {
+    padding: 5px;
+    width: 200px;
+}
+
+.selected {
+    background-color: #e0e0e0; /* or any color you prefer */
+}
